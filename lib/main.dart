@@ -25,8 +25,46 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('My Weather App'),
         ),
-        body: const Center(
-          child: Text('Hello World'),
+        body: Center(
+          child: Column(
+            children: [
+              ...[
+                for (var weather in weathers)
+                  Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.grey.shade200,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(weather['city'],
+                                  style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold)),
+                              Text('${weather['temp']}°',
+                                  style: const TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(weather['weather']),
+                              Text(
+                                  '最高 ${weather['high']}° 最低 ${weather['low']}°'),
+                            ],
+                          ),
+                        ],
+                      )),
+              ],
+            ],
+          ),
         ),
       ),
     );
